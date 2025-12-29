@@ -1,4 +1,4 @@
-FROM node:16.20.2 AS builder
+FROM gz-harbor.9n1m.net/crproxy/docker.io/library/node:16.20.2 AS builder
 WORKDIR /app
 COPY package*.json ./
 RUN npm config set registry http://nexus.9n1m.com/repository/npm-group/
@@ -7,7 +7,7 @@ COPY . .
 RUN npm run build:prod
 
 # production stage
-FROM nginx:mainline-alpine3.20
+FROM gz-harbor.9n1m.net/crproxy/docker.io/library/nginx:mainline-alpine3.20
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY default.conf /etc/nginx/conf.d/
 EXPOSE 80
