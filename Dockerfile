@@ -1,7 +1,7 @@
 FROM node:16.20.2 AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm config set registry https://registry.npmmirror.com/
+RUN npm config set registry http://nexus.9n1m.com/repository/npm-group/
 RUN npm install  --legacy-peer-deps
 COPY . .
 RUN npm run build:prod
