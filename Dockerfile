@@ -1,8 +1,8 @@
 FROM gz-harbor.9n1m.net/crproxy/docker.io/library/node:16.20.2 AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm config set registry http://nexus.9n1m.com/repository/npm-group/
-RUN npm install  --legacy-peer-deps
+RUN npm config set registry http://nexus.9n1m.com/repository/npm-cdn-tao/
+RUN npm install  --legacy-peer-deps --timeout=60000 --fetch-timeout=600000
 COPY . .
 RUN npm run build:prod
 
